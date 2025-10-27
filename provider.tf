@@ -22,5 +22,5 @@ provider "aws" {
 }
 
 provider "docker" {
-  region = "us-east-1"
+  
 }

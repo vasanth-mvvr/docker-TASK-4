@@ -35,4 +35,7 @@ validate $? "installing utils"
 yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo &>>$LOG_FILE
 validate $? "Adding terraform repo"
 yum -y install terraform &>>$LOG_FILE
-validate $? "installing docker"
+validate $? "installing terraform"
+
+
+

@@ -1,3 +1,3 @@
-variable "nginx_image" {
-  default = docker_image.nginx.name
+variable "nginx_name" {
+  default = "nginx:latest"
 }

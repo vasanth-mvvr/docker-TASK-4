@@ -11,7 +11,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-VALIDATE(){
+validate(){
     if [ $1 -ne 0 ]
     then 
         echo -e "$R $2  Failed ... $N"

@@ -11,7 +11,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-validate(){
+VALIDATE(){
     if [ $1 -ne 0 ]
     then 
         echo -e "$R $2  Failed ... $N"
@@ -30,22 +30,24 @@ else
     echo -e "$G You are super user $N"
 fi   
 
-sudo dnf -y install dnf-plugins-core &>>$LOG_FILE
-validate $? "installation of docker plugins core"
+R="\e[31m"
+N="\e[0m"
+dnf -y install dnf-plugins-core
+validate $? "installing plugin core"
 
-sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo &>>$LOG_FILE
+dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 validate $? "Adding docker repo"
 
-sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y &>>$LOG_FILE
-validate $? "installing docker plugins "
-sudo  systemctl start docker &>>$LOG_FILE
+dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+validate $? "installing plugins"
+
+systemctl start docker
 validate $? "Starting docker"
 
-sudo systemctl enable docker &>>$LOG_FILE
-validate $? "Enabling docker"
+systemctl enable docker
+validate $? "enabling docker"
 
-sudo usermod -aG docker ec2-user &>>$LOG_FILE
+usermod -aG docker ec2-user
 validate $? "Adding home user to docker"
 
-echo -e "$R logout and login again $n" &>>$LOG_FILE
-validate $? "logout"
+echo -e "$R logout and login again $N"

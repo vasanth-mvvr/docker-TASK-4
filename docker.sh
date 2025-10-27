@@ -29,9 +29,6 @@ then
 else
     echo -e "$G You are super user $N"
 fi   
-
-R="\e[31m"
-N="\e[0m"
 dnf -y install dnf-plugins-core
 validate $? "installing plugin core"
 
